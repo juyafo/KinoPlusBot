@@ -31,4 +31,5 @@ async def cmd_start(message: Message, session: AsyncSession):
         logger.info(f"User {message.from_user.id} started bot")
     except Exception as e:
         logger.error(f"Error in start handler: {e}")
-        await message.answer("❌ Xatolik yuz berdi. Keyinroq urinib ko'ring!")
+        # Xatolik yuz berganda ham foydalanuvchiga javob qaytarish shart!
+        await message.answer("❌ Tizimga ulanishda xatolik yuz berdi. Iltimos, qaytadan /start bosing!")
