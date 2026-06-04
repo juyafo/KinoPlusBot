@@ -1,8 +1,8 @@
 aiogram
-sqlalchemy==2.0.23
+sqlalchemy
 asyncpg
-alembic==1.13.1
-python-dotenv==1.0.0
-redis==5.0.1
+alembic
+python-dotenv
+redis
 pydantic
-loguru==0.7.2
+loguru
