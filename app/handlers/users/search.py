@@ -17,6 +17,18 @@ async def search_movie(message: Message, session: AsyncSession, state: FSMContex
         movie_service = MovieService(session)
         user_service = UserService(session)
         
+        # 🌟 AVTOMATIK RO'YXATDAN O'TKAZISH (Muammoning yechimi)
+        # Agar foydalanuvchi start bosmasdan to'g'ri kino kodini yozgan bo'lsa, xato bermasligi uchun bazaga qo'shamiz
+        try:
+            await user_service.register_user(
+                telegram_id=message.from_user.id,
+                full_name=message.from_user.full_name or "Noma'lum",
+                username=message.from_user.username
+            )
+        except Exception as db_err:
+            # Agar allaqachon bazada bo'lsa unique xato berishi mumkin, uni o'tkazib yuboramiz
+            pass
+
         # Kod bo'yicha qidiruv (3 xonali)
         if query.isdigit() and len(query) == 3:
             movie = await movie_service.get_movie_by_code(query)
